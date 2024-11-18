@@ -1,0 +1,63 @@
+<!-- <!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+  <div ng-controller="formController">
+    <form name="myForm">
+      <input type="email" name="email" ng-model="email" ng-required="true" placeholder="Email">
+      <button ng-disabled="myForm.$invalid">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    angular.module('myApp', []).controller('formController', function($scope) {});
+  </script>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AngularJS Input Validation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+  <div ng-controller="formController">
+    <h2>Email Input Validation</h2>
+
+    <form name="myForm" ng-submit="submitForm()" novalidate>
+      <label for="email">Email:</label>
+      <input type="email" name="email" ng-model="email" ng-required="true" 
+             ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/" placeholder="Enter your email">
+      
+      <span ng-show="myForm.email.$error.required && myForm.email.$touched" style="color:red">Email is required!</span>
+      <span ng-show="myForm.email.$error.pattern && myForm.email.$touched" style="color:red">Invalid email format!</span>
+      <span ng-show="myForm.email.$valid && myForm.email.$touched" style="color:green">Valid email!</span>
+
+      <br><br>
+      <button type="submit" ng-disabled="myForm.$invalid">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // Define the AngularJS module
+    var app = angular.module('myApp', []);
+
+    // Define the controller
+    app.controller('formController', function($scope) {
+      $scope.submitForm = function() {
+        alert('Form Submitted!');
+      };
+    });
+  </script>
+
+</body>
+</html>
+

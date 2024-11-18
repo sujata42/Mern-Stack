@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .star { font-size: 30px; color: gray; cursor: pointer; }
+    .selected { color: gold; }
+  </style>
+</head>
+<body>
+  <div id="stars">
+    <span class="star">u+2B50</span>
+    <span class="star">*</span>
+    <span class="star">★</span>
+    <span class="star">★</span>
+    <span class="star">★</span>
+  </div>
+  <p>Rating: <span id="rating">0</span></p>
+
+  <script>
+    $(".star").hover(function() {
+      $(this).prevAll().addBack().css("color", "gold");
+    }, function() {
+      $(this).prevAll().addBack().css("color", "gray");
+    });
+
+    $(".star").click(function() {
+      $("#rating").text($(this).index() + 1);
+    });
+  </script>
+</body>
+</html>

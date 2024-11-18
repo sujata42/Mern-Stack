@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Strength Checker</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .weak { color: red; }
+    .medium { color: orange; }
+    .strong { color: green; }
+  </style>
+</head>
+<body>
+  <input type="password" id="password" placeholder="Enter password">
+  <p id="strength"></p>
+
+  <script>
+    $(document).ready(function () {
+      $("#password").on("input", function () {
+        const pass = $(this).val();
+        const strength = pass.length < 6 ? "Weak" : /\d/.test(pass) ? "Strong" : "Medium";
+        $("#strength").text(strength).attr("class", strength.toLowerCase());
+      });
+    });
+  </script>
+</body>
+</html>
